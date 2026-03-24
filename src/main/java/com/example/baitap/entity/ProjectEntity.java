@@ -22,7 +22,7 @@ public class ProjectEntity {
     @JoinColumn(name = "manager_id", nullable = false)
     private UserEntity manager;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "project_users",
             joinColumns = @JoinColumn(name = "project_id"),

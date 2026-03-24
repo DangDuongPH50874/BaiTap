@@ -92,9 +92,9 @@ INSERT INTO roles(name) VALUES ('USER'), ('MANAGER');
 -- Khi dùng thật (login), bạn nên thay bằng BCrypt hash tương ứng với password bạn muốn.
 INSERT INTO users(username, password_hash)
 VALUES
-('admin', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.'),
-('manager1', 'bcrypt-hash-demo-1'),
-('manager2', 'bcrypt-hash-demo-2'),
+('admin', '$2a$10$666ScF9fS8W504BsgSfSo.thMbvsAjvXWcfQHntkvD8xB2sLNjO/K'),
+('manager1', '$2a$10$666ScF9fS8W504BsgSfSo.thMbvsAjvXWcfQHntkvD8xB2sLNjO/K'),
+('manager2', '$2a$10$666ScF9fS8W504BsgSfSo.thMbvsAjvXWcfQHntkvD8xB2sLNjO/K'),
 ('user1', 'bcrypt-hash-demo-3'),
 ('user2', 'bcrypt-hash-demo-4'),
 ('user3', 'bcrypt-hash-demo-5'),

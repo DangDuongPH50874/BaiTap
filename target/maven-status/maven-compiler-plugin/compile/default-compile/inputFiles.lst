@@ -8,13 +8,16 @@ D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dom
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\auth\LoginRequest.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\auth\LoginResponse.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\auth\RegisterRequest.java
+D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\project\AddMemberRequest.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\project\CreateProjectRequest.java
+D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\project\ProjectMemberResponse.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\project\ProjectResponse.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\task\AssignTaskRequest.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\task\CreateTaskRequest.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\task\TaskResponse.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\task\UpdateTaskRequest.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\task\UpdateTaskStatusRequest.java
+D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\dto\user\UserResponse.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\entity\ProjectEntity.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\entity\RoleEntity.java
 D:\Hoctap\PRO115 Thuc tap tot nghiep\BaiTap\src\main\java\com\example\baitap\entity\TaskEntity.java

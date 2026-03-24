@@ -129,6 +129,24 @@ public class TaskService {
     }
 
     @Transactional(readOnly = true)
+    public List<TaskResponse> getAllTasks() {
+        Long currentUserId = SecurityUtils.getCurrentUserId();
+        boolean isUserRole = SecurityUtils.hasRole(RoleName.USER.name());
+
+        if (isUserRole) {
+            // USER chỉ xem task của mình
+            return taskRepository.findByAssignedTo_Id(currentUserId).stream()
+                    .map(this::toResponse)
+                    .toList();
+        } else {
+            // MANAGER xem tất cả tasks
+            return taskRepository.findAll().stream()
+                    .map(this::toResponse)
+                    .toList();
+        }
+    }
+
+    @Transactional(readOnly = true)
     public List<TaskResponse> listByUser(Long userId) {
         Long currentUserId = SecurityUtils.getCurrentUserId();
         boolean isUserRole = SecurityUtils.hasRole(RoleName.USER.name());

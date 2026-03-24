@@ -1,5 +1,6 @@
 package com.example.baitap.security;
 
+import com.example.baitap.domain.RoleName;
 import com.example.baitap.exception.CustomException;
 import com.example.baitap.exception.ErrorCode;
 import org.springframework.security.core.Authentication;
@@ -40,6 +41,12 @@ public class SecurityUtils {
                     || expectedRaw.equals(value)
                     || value.endsWith(roleName);
         });
+    }
+
+    public static void requireRole(RoleName roleName) {
+        if (!hasRole(roleName.name())) {
+            throw new CustomException(ErrorCode.FORBIDDEN, roleName.name() + " required");
+        }
     }
 }
 

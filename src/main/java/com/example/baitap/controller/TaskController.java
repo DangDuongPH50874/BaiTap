@@ -28,6 +28,24 @@ public class TaskController {
         return ResponseEntity.ok(ApiResponse.ok(resp));
     }
 
+    @GetMapping("/tasks")
+    public ResponseEntity<ApiResponse<List<TaskResponse>>> getAll() {
+        List<TaskResponse> resp = taskService.getAllTasks();
+        return ResponseEntity.ok(ApiResponse.ok(resp));
+    }
+
+    @GetMapping("/tasks/project/{projectId}")
+    public ResponseEntity<ApiResponse<List<TaskResponse>>> listByProject(@PathVariable("projectId") Long projectId) {
+        List<TaskResponse> resp = taskService.listByProject(projectId);
+        return ResponseEntity.ok(ApiResponse.ok(resp));
+    }
+
+    @GetMapping("/tasks/user/{userId}")
+    public ResponseEntity<ApiResponse<List<TaskResponse>>> listByUser(@PathVariable("userId") Long userId) {
+        List<TaskResponse> resp = taskService.listByUser(userId);
+        return ResponseEntity.ok(ApiResponse.ok(resp));
+    }
+
     @PostMapping("/tasks/{taskId}/assign")
     public ResponseEntity<ApiResponse<TaskResponse>> assign(
             @PathVariable Long taskId,
@@ -37,7 +55,7 @@ public class TaskController {
         return ResponseEntity.ok(ApiResponse.ok(resp));
     }
 
-    @PatchMapping("/tasks/{taskId}/status")
+    @PutMapping("/tasks/{taskId}/status")
     public ResponseEntity<ApiResponse<TaskResponse>> updateStatus(
             @PathVariable Long taskId,
             @Valid @RequestBody UpdateTaskStatusRequest request
@@ -59,18 +77,6 @@ public class TaskController {
     public ResponseEntity<ApiResponse<Long>> delete(@PathVariable Long taskId) {
         Long deletedId = taskService.delete(taskId);
         return ResponseEntity.ok(ApiResponse.ok(deletedId));
-    }
-
-    @GetMapping("/users/tasks/{id}")
-    public ResponseEntity<ApiResponse<List<TaskResponse>>> listByUser(@PathVariable("id") Long userId) {
-        List<TaskResponse> resp = taskService.listByUser(userId);
-        return ResponseEntity.ok(ApiResponse.ok(resp));
-    }
-
-    @GetMapping("/projects/tasks/{projectId}")
-    public ResponseEntity<ApiResponse<List<TaskResponse>>> listByProject(@PathVariable("projectId") Long projectId) {
-        List<TaskResponse> resp = taskService.listByProject(projectId);
-        return ResponseEntity.ok(ApiResponse.ok(resp));
     }
 }
 

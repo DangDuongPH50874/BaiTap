@@ -3,6 +3,7 @@ package com.example.baitap.service;
 import com.example.baitap.domain.RoleName;
 import com.example.baitap.dto.auth.LoginResponse;
 import com.example.baitap.dto.auth.RegisterRequest;
+import com.example.baitap.dto.user.UserResponse;
 import com.example.baitap.entity.RoleEntity;
 import com.example.baitap.entity.UserEntity;
 import com.example.baitap.exception.CustomException;
@@ -10,6 +11,7 @@ import com.example.baitap.exception.ErrorCode;
 import com.example.baitap.repository.RoleRepository;
 import com.example.baitap.repository.UserRepository;
 import com.example.baitap.security.JwtUtil;
+import com.example.baitap.security.SecurityUtils;
 import com.example.baitap.security.UserPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -64,6 +69,33 @@ public class UserService {
         UserPrincipal principal = new UserPrincipal(user.getId(), user.getUsername(), authorities);
         String token = jwtUtil.generateToken(principal, roleNames);
         return new LoginResponse(user.getId(), token);
+    }
+
+    @Transactional(readOnly = true)
+    public UserResponse getCurrentUser() {
+        Long currentUserId = SecurityUtils.getCurrentUserId();
+        UserEntity user = userRepository.findById(currentUserId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND, "user not found: " + currentUserId));
+        
+        List<String> roleNames = user.getRoles().stream()
+                .map(r -> r.getName().name())
+                .collect(Collectors.toList());
+        
+        return new UserResponse(user.getId(), user.getUsername(), user.getCreatedAt(), 
+                new HashSet<>(roleNames));
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserResponse> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> {
+                    List<String> roleNames = user.getRoles().stream()
+                            .map(r -> r.getName().name())
+                            .collect(Collectors.toList());
+                    return new UserResponse(user.getId(), user.getUsername(), user.getCreatedAt(), 
+                            new HashSet<>(roleNames));
+                })
+                .collect(Collectors.toList());
     }
 }
 
